@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Conexion con css-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='Styles/styles.css') }}">
+    
+    <title>Read my 🦆</title>
+</head>
+
+<body id="body">
+
+    <header id="header">
+        <div id="logoBaitcon">
+            <img src="../static/img/baitcon.png" alt="Logo de Baitcon">
+        </div>
+    </header>    
+    
+    
+<div id="card">
+    <h1>Subir archivo</h1>
+    <!--Drag and drop-->
+    <div id="drop-area" ondrop="handleDrop(event)" ondragover="handleDragOver(event)">
+        <p>Suelta tus archivos aqui</p>
+    </div>
+
+    <!--Botones-->
+    <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+        <div style="margin-left: -215px; margin-right: 50px;">
+            <!-- Este es el botón original de selección de archivo -->
+            <input type="file" name="file" id="fileInput" style="visibility: hidden;">
+            <!-- Nuevo botón de selección de archivo -->
+            <label for="fileInput" class="buttonDinamic" style="margin-right: 10px; display: inline-block;">Seleccionar archivo</label>
+            <button type="submit" class="buttonDinamic" style="display: inline-block;">Upload</button>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    function handleDrop(event) {
+        event.preventDefault();
+        const fileInput = document.getElementById('fileInput');
+        fileInput.files = event.dataTransfer.files;
+        document.getElementById('upload-form').submit();
+    }
+
+    function handleDragOver(event) {
+        event.preventDefault();
+    }
+</script>
+</body>
+</html>

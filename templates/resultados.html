@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--Conexion con css-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='Styles/styles.css') }}">
+
+    <title>Resultados</title>
+</head>
+<body id="body2">
+
+<header id="header">
+    <div id="logoBaitcon">
+         <img src="../static/img/baitcon.png" alt="Logo de Baitcon">
+    </div>
+</header>    
+
+<div id="Volver">
+<button onclick="window.history.back()" class="buttonDinamic volver-button" id="volver-button">🢀</button>
+</div>
+
+
+
+<div id="card2">
+
+    <ul>
+        {% for chunk in chunks %}
+        <li id="chunk">{{ chunk }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+<!-- Botón de chat flotante -->
+<button id="chatButton" class="chat-button" onclick=" toggleChat()"></button>
+
+<!-- Saludo inicial -->
+<div id="initialGreeting" class="initial-greeting">¡Hola! ¿En qué puedo ayudarte? cuak</div>
+
+
+<!-- Chat flotante -->
+<div id="chatWindow" class="chat-window">
+    <div class="chat-content">
+
+        <div class="cardDialogo">
+        <div class="GloboDialogo">
+        ¡En que puedo ayudarte!... digo cuak
+        </div>
+        </div>
+        <div id="barraChat">
+            <input type="text" id="BarraConsultas"> <button class="buttonDinamic" id="Enviar">Enviar</button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+
+
+// Función para mostrar u ocultar el chat y el saludo inicial
+function toggleChat() {
+    var chatWindow = document.getElementById("chatWindow");
+    var initialGreeting = document.getElementById("initialGreeting");
+
+    chatWindow.style.display = chatWindow.style.display === "none" ? "block" : "none";
+
+    if (chatWindow.style.display === "none") {
+        initialGreeting.style.display = "block";
+    } else {
+        initialGreeting.style.display = "none";
+    }
+}
+
+// Función para mostrar un saludo inicial después de 1 segundo
+setTimeout(function() {
+    saludoInicial();
+}, 1000); // 1000 ms = 1 segundo
+
+// Función para mostrar un saludo inicial
+function saludoInicial() {
+    var initialGreeting = document.getElementById("initialGreeting");
+    initialGreeting.style.display = "block"; 
+}
+</script>
+
+</body>
+</html>
